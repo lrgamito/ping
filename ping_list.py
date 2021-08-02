@@ -1,15 +1,24 @@
 import os
+import json
 from colorama import init, Fore
 
 init(autoreset=True)
 
-ip_list = ["8.8.8.8", "8.8.4.4", "172.0.0.2"]
 
-for ip in ip_list:
+try:
+	f = open("ip_list.json", "r")
+	ips = json.loads(f.read())
+except: 
+	print("Erro ao ler arquivo de lista")
+	raise
+
+
+
+for name, ip in ips.items():
 	
 	response = os.popen(f"ping {ip}").read()
 	
 	if "Recebidos = 4" in response:
-		print(f"{ip}  {Fore.LIGHTGREEN_EX } \t\t[UP]")
+		print(f"{name} - {ip}  {Fore.LIGHTGREEN_EX } \t\t[UP]")
 	else:
-		print(f"{ip}  {Fore.RED } \t\t[DOWN]")
+		print(f"{name} - {ip}  {Fore.RED } \t\t[DOWN]")
