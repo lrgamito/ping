@@ -1,0 +1,2 @@
+# Requirements needed.
+colorama >= 0.4.3
