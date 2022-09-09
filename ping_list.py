@@ -13,6 +13,8 @@ try:
 except: 
 	print("Erro ao ler arquivo de lista")
 	raise
+finally:
+	f.close()
 
 # Saber se é Linux ou Windows
 arq = sys.platform
